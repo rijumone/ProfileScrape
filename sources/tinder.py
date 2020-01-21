@@ -1,16 +1,16 @@
 from loguru import logger
 from .profile_base import ProfileBase
 
-class Tantan(ProfileBase):
+class Tinder(ProfileBase):
 
-    source_name = 'tantan'
-    package_name = '\'com.p1.mobile.putong/.ui.splash.SplashProxyAct\''
+    source_name = 'tinder'
+    package_name = '\'com.tinder/.activities.MainActivity\''
     crops = {
-        'main_image': [57, 1130],
-        'raw': [1180, 1980],
+        'main_image': [57, 1380],
+        'raw': [1400, 1980],
     }
-    initial_tap_coords = (540, 1080, )
-    reset_tap_coords = (965, 2042, )
+    initial_tap_coords = (540, 1826, )
+    reset_tap_coords = (723, 2056, )
 
     
     def is_stop_condition(self):

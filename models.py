@@ -8,7 +8,7 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, Date, DECIMAL, DateTime
+from sqlalchemy import Column, Integer, String, Date, DECIMAL, DateTime, Boolean
 
 Base = declarative_base()
 engine = create_engine(
@@ -69,6 +69,8 @@ class Person(Base):
     sunsign = Column(String)
     last_active = Column(String)
     raw = Column(String)
+    result = Column(Boolean, default=True)
+    source_name = Column(String)
     
     def __repr__(self):
         return '''<Person (
@@ -83,22 +85,23 @@ class Picture(Base):
     __tablename__ = 'picture'
     
     id = Column(Integer, primary_key=True)
-    profile_id = Column(Integer)
-    uuid = Column(String)
+    person_id = Column(Integer)
+    _uuid = Column('uuid', String)
 
     def __repr__(self):
         return '''<Picture (
                     id={id},     
-                    uuid={uuid},     
+                    uuid={_uuid},     
                 )>'''.format(
                     id=self.id,
-                    uuid=self.uuid,
+                    _uuid=self._uuid,
                 )
 
 class User(Base):
     __tablename__ = 'user'
     
     name = Column(String, primary_key=True)
+    device_id = Column(String)
     
     def __repr__(self):
         return '''<User (

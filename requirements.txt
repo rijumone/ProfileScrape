@@ -82,7 +82,7 @@ skywriter==0.0.7
 sn3218==1.2.7
 spidev==3.4
 touchphat==0.0.1
-Twisted==18.9.0
+Twisted==19.7.0
 twython==3.7.0
 unicornhathd==0.0.4
 urllib3==1.24.1

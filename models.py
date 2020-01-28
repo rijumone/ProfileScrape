@@ -102,6 +102,9 @@ class User(Base):
     
     name = Column(String, primary_key=True)
     device_id = Column(String)
+    is_active = Column(Boolean)
+    screen_resolution_width = Column(Integer)
+    screen_resolution_height = Column(Integer)
     
     def __repr__(self):
         return '''<User (

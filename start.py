@@ -4,38 +4,46 @@ import time
 from loguru import logger
 from models import *
 from sources.tantan import Tantan
-from constants import SOURCE_MAP
+from constants import SOURCE_MAP, PIXEL_MAP_SCALE
 
 from ppadb.client import Client as AdbClient
 
 def main():
     
     
-    sources = session.query(Source).filter(Source.name=='tinder').all()
+    # sources = session.query(Source).filter(Source.name=='tinder').all()
+    # sources = session.query(Source).filter(Source.name=='happn').all()
+    # sources = session.query(Source).filter(Source.name=='tantan').all()
+    sources = session.query(Source).all()
     for source in sources:
         
         source_obj = SOURCE_MAP[source.name]()
 
-        for user in session.query(User).all():
+        for user in session.query(User).filter(User.is_active==True).all():
             # log run to db
             run = Run(
                 source_name=source.name,
                 user_name=user.name,
             )
+            # print(user)
             session.add(run)
             session.commit()
             source_obj.set_device(device=get_device(user.device_id))
+            source_obj.set_user(user, PIXEL_MAP_SCALE)
             
             # launching app
             r = source_obj.launch_app()
-            print(r)
+            # print(r)
             if not source_obj.get_to_ready_state():
                 continue
 
             while True:
                 # check for stop condition
                 if source_obj.is_stop_condition():
-                    logger.debug('breaking..')
+                    logger.debug('is_stop_condition for {}, exiting app...'.format(
+                        source_obj.source_name
+                    ))
+                    source_obj.exit_app()
                     break
                 # import pdb; pdb.set_trace()
                 source_obj.collect_data()

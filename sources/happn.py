@@ -1,14 +1,15 @@
+import time
 from loguru import logger
 from .profile_base import ProfileBase
 
-class Tantan(ProfileBase):
+class Happn(ProfileBase):
 
-    source_name = 'tantan'
-    package_name = '\'com.p1.mobile.putong/.ui.splash.SplashProxyAct\''
+    source_name = 'happn'
+    package_name = '\'com.ftw_and_co.happn/.ui.splash.SplashActivity\''
     crops = {
         'main_image': (
-            0.027, 
-            0.68,
+            0.025, 
+            0.90,
             ),
         'raw': (
             0.2, 
@@ -26,8 +27,8 @@ class Tantan(ProfileBase):
         0.50, 
         )
     reset_tap_coords = (
-        0.902777778, 
-        0.9375, 
+        0.694444444, 
+        0.8671875, 
         )
     bio_swipe_coords = {
         'from': 0.78125,
@@ -43,11 +44,7 @@ class Tantan(ProfileBase):
     def process_stop_condition(self):
         pass
 
-    # def collect_data(self):
-
-        
-    #     # crop to dimensions
-    #     pass
-
-    # def reset(self):
-    #     pass
+    def get_to_ready_state(self):
+        logger.info('sleeping for 1.5 seconds...')
+        time.sleep(1.5)
+        return True

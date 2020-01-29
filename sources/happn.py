@@ -16,10 +16,10 @@ class Happn(ProfileBase):
             0.916666667,
             ),
         'stop_check': (
+            0.15, 
             0.0, 
-            0.1, 
-            0.9, 
-            0.7,
+            0.85, 
+            0.4,
             )
     }
     initial_tap_coords = (
@@ -35,11 +35,13 @@ class Happn(ProfileBase):
         'to': 0.6,
         'duration': None
     }
+
+    stop_condition_check_text = 'do you want unlimited likes'
     
 
     
-    def is_stop_condition(self):
-        return False
+    # def is_stop_condition(self):
+    #     return False
     
     def process_stop_condition(self):
         pass

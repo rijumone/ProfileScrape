@@ -16,9 +16,9 @@ class Tantan(ProfileBase):
             ),
         'stop_check': (
             0.0, 
-            0.1, 
-            0.9, 
-            0.7,
+            0.6, 
+            0.99999, 
+            0.9,
             )
     }
     initial_tap_coords = (
@@ -35,10 +35,10 @@ class Tantan(ProfileBase):
         'duration': None
     }
     
-
+    stop_condition_check_text = 'There is no one new around you'
     
-    def is_stop_condition(self):
-        return False
+    # def is_stop_condition(self):
+    #     return False
     
     def process_stop_condition(self):
         pass

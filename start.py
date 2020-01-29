@@ -8,6 +8,8 @@ from constants import SOURCE_MAP, PIXEL_MAP_SCALE
 
 from ppadb.client import Client as AdbClient
 
+logger.add(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log.log'), rotation="10 MB", retention="10 days")
+
 def main():
     
     

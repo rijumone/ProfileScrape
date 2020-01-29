@@ -70,14 +70,21 @@ class ProfileBase(metaclass=ABCMeta):
         with Image.open(self.tmp_image_path) as tmp_image:
             # logger.warning(tuple(int(self.screen_resolution_width * _) for _ in self.crops['stop_check']) )
             tmp_image_crop = tmp_image.crop(
-                tuple(int(self.screen_resolution_width * _) for _ in self.crops['stop_check']) 
+                # tuple(int(self.screen_resolution_width * _) for _ in self.crops['stop_check']) ,
+                    (
+                        int(self.screen_resolution_width * self.crops['stop_check'][0]),
+                        int(self.screen_resolution_height * self.crops['stop_check'][1]),
+                        int(self.screen_resolution_width * self.crops['stop_check'][2]),
+                        int(self.screen_resolution_height * self.crops['stop_check'][3]),
+                    )
                 )
-            # tmp_image_crop.save(tmp_image_path)
+            tmp_image_crop.save(self.tmp_image_path)
 
         raw_text = pytesseract.image_to_string(tmp_image_crop)
         logger.debug(raw_text)
         if self.stop_condition_check_text.lower() in raw_text.lower():
             return True
+        self.get_to_ready_state()
         return False
     
     @abstractmethod
@@ -158,7 +165,7 @@ class ProfileBase(metaclass=ABCMeta):
         self.device.shell(cmd)
         logger.info('waiting to reset...')
         time.sleep(1)
-        self.get_to_ready_state()
+        # self.get_to_ready_state()
 
     def is_ad(self):
         self.device.shell("screencap -p /sdcard/screen.png")

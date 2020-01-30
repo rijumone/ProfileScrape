@@ -36,9 +36,13 @@ class Happn(ProfileBase):
         'duration': None
     }
 
-    stop_condition_check_text = 'do you want unlimited likes'
+    stop_condition_check_texts = [
+        'do you want unlimited likes',
+        'No one in sight?',
+        'Explore your Map to find the happners you\'ve Liked or go out fora',
+        'stroll and cross paths with some fresh faces!',
+        ]
     
-
     
     # def is_stop_condition(self):
     #     return False

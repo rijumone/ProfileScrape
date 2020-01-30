@@ -16,7 +16,7 @@ def main():
     # sources = session.query(Source).filter(Source.name=='tinder').all()
     # sources = session.query(Source).filter(Source.name=='happn').all()
     # sources = session.query(Source).filter(Source.name=='tantan').all()
-    sources = session.query(Source).all()
+    sources = session.query(Source).order_by(Source.call_order.asc()).all()
     for source in sources:
         
         source_obj = SOURCE_MAP[source.name]()

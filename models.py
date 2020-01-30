@@ -30,6 +30,7 @@ class Source(Base):
     name = Column(String, primary_key=True)
     x_coord = Column(Integer)
     y_coord = Column(Integer)
+    call_order = Column(Integer)
     
     def __repr__(self):
         return '''<Source (

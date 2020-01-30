@@ -41,7 +41,9 @@ class Tinder(ProfileBase):
         'duration': None
     }
     remove_these = ['SEE WHAT A FRIEND THINKS', ]
-    stop_condition_check_text = 'Get Tinder Plus'
+    stop_condition_check_texts = [
+        'Get Tinder Plus',
+    ]
     tmp_image_path = None
 
     

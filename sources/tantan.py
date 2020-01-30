@@ -35,7 +35,9 @@ class Tantan(ProfileBase):
         'duration': None
     }
     
-    stop_condition_check_text = 'There is no one new around you'
+    stop_condition_check_texts = [
+        'There is no one new around you',
+    ]
     
     # def is_stop_condition(self):
     #     return False

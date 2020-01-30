@@ -29,7 +29,7 @@ class ProfileBase(metaclass=ABCMeta):
         'duration': None
     }
     remove_these = []
-    stop_condition_check_text = None
+    stop_condition_check_texts = []
     screen_resolution_width = None
     screen_resolution_height = None
 
@@ -82,8 +82,9 @@ class ProfileBase(metaclass=ABCMeta):
 
         raw_text = pytesseract.image_to_string(tmp_image_crop)
         logger.debug(raw_text)
-        if self.stop_condition_check_text.lower() in raw_text.lower():
-            return True
+        for stop_condition_check_text in self.stop_condition_check_texts:
+            if stop_condition_check_text.lower() in raw_text.lower():
+                return True
         self.get_to_ready_state()
         return False
     

@@ -28,19 +28,13 @@ class Source(Base):
     __tablename__ = 'source'
 
     name = Column(String, primary_key=True)
-    x_coord = Column(Integer)
-    y_coord = Column(Integer)
     call_order = Column(Integer)
     
     def __repr__(self):
         return '''<Source (
                     name={name},
-                    x_coord={x_coord},
-                    y_coord={y_coord},
                     )>'''.format(
                         name=self.name,
-                        x_coord=self.x_coord,
-                        y_coord=self.y_coord,
                     )
 
 class Region(Base):

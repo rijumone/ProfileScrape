@@ -34,7 +34,7 @@ class ProfileBase(metaclass=ABCMeta):
     screen_resolution_height = None
 
     def __init__(self):
-        self._uuid = self.generate_uuid()
+        self._uuid = str(self.generate_uuid()) + '_' + str(int(time.time()))
         self.main_image_path = "media/{}.png".format(self._uuid)
         self.crop_image_path = "media/{}_crop.jpg".format(self._uuid)
         self.tmp_image_path = "media/{}_tmp.png".format(self._uuid)
@@ -44,8 +44,8 @@ class ProfileBase(metaclass=ABCMeta):
         return self.device.shell('am start -n {}'.format(self.package_name)) 
     
     def get_to_ready_state(self):
-        logger.info('sleeping for 1 seconds...')
-        time.sleep(1)
+        logger.info('sleeping for 5 seconds...')
+        time.sleep(5)
         # while self.is_ad():
         #     time.sleep(1)
         try:

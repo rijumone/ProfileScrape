@@ -34,11 +34,7 @@ class ProfileBase(metaclass=ABCMeta):
     screen_resolution_height = None
 
     def __init__(self):
-        self._uuid = str(self.generate_uuid()) + '_' + str(int(time.time()))
-        self.main_image_path = "media/{}.png".format(self._uuid)
-        self.crop_image_path = "media/{}_crop.jpg".format(self._uuid)
-        self.tmp_image_path = "media/{}_tmp.png".format(self._uuid)
-        self.raw_image_path = "media/{}_raw.png".format(self._uuid)
+        pass
 
     def launch_app(self):
         return self.device.shell('am start -n {}'.format(self.package_name)) 
@@ -85,6 +81,11 @@ class ProfileBase(metaclass=ABCMeta):
         for stop_condition_check_text in self.stop_condition_check_texts:
             if stop_condition_check_text.lower() in raw_text.lower():
                 return True
+        self._uuid = str(self.generate_uuid()) + '_' + str(int(time.time()))
+        self.main_image_path = "media/{}.png".format(self._uuid)
+        self.crop_image_path = "media/{}_crop.jpg".format(self._uuid)
+        self.tmp_image_path = "media/{}_tmp.png".format(self._uuid)
+        self.raw_image_path = "media/{}_raw.png".format(self._uuid)        
         self.get_to_ready_state()
         return False
     
@@ -209,10 +210,22 @@ class ProfileBase(metaclass=ABCMeta):
         return '\n'.join([_ for _ in raw_text.split('\n') if len(_) > 0])
 
     def exit_app(self):
-        for _ in range(5):
-            cmd = 'input keyevent 4'
-            self.device.shell(cmd)
-            time.sleep(0.1)
+        # for _ in range(5):
+        #     cmd = 'input keyevent 4'
+        #     self.device.shell(cmd)
+        #     time.sleep(0.1)
+        cmd = 'input keyevent KEYCODE_APP_SWITCH'
+        self.device.shell(cmd)
+        time.sleep(0.1)
+        cmd = 'input touchscreen swipe {} {} {} {} 100'.format(
+            int(self.screen_resolution_width / 2),
+            int(self.screen_resolution_height * (self.bio_swipe_coords['from'] - 0.1)), 
+            int(self.screen_resolution_width / 2),
+            int(self.screen_resolution_height * (self.bio_swipe_coords['to'] - 0.2)), 
+        )
+        logger.debug(cmd)
+        self.device.shell(cmd)
+        
 
     def get_bio_page_ready(self):
         cmd = 'input touchscreen swipe {} {} {} {}'.format(

@@ -49,14 +49,25 @@ class Woo(ProfileBase):
     def process_stop_condition(self):
         pass
 
-    def exit_app(self):
-        cmd = 'input tap {} {}'.format(
-            int(self.screen_resolution_width * 0.5236), 
-            int(self.screen_resolution_height * 0.6476), 
-        )
-        logger.debug(cmd)
-        self.device.shell(cmd)
-        for _ in range(4):
-            cmd = 'input keyevent 4'
+    # def exit_app(self):
+    #     cmd = 'input tap {} {}'.format(
+    #         int(self.screen_resolution_width * 0.5236), 
+    #         int(self.screen_resolution_height * 0.6476), 
+    #     )
+    #     logger.debug(cmd)
+    #     self.device.shell(cmd)
+    #     for _ in range(4):
+    #         cmd = 'input keyevent 4'
+    #         self.device.shell(cmd)
+    #         time.sleep(0.1)
+
+    def get_bio_page_ready(self):
+        for _ in range(3):
+            cmd = 'input touchscreen swipe {} {} {} {}'.format(
+                int(self.screen_resolution_width / 2),
+                int(self.screen_resolution_height * (self.bio_swipe_coords['from'])), 
+                int(self.screen_resolution_width / 2),
+                int(self.screen_resolution_height * (self.bio_swipe_coords['to'])), 
+            )
+            # logger.debug(cmd)
             self.device.shell(cmd)
-            time.sleep(0.1)

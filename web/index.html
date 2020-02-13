@@ -4,9 +4,34 @@
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<style type="text/css">
+	.grid-item { width: 200px; }
+	/*.grid-item--width2 { width: 400px; }*/
+</style>
+
 <body>
-foo
+	<div class="grid">
+	  <div class="grid-item"><img src="https://tympanus.net/Development/GridLoadingEffects/images/1.jpg"/></div>
+	  <div class="grid-item"><img src="https://tympanus.net/Development/GridLoadingEffects/images/3.jpg"/></div>
+	  <div class="grid-item"><img src="https://tympanus.net/Development/GridLoadingEffects/images/4.jpg"/></div>
+	  <div class="grid-item"><img src="http://riju.onthewifi.com:8081/ffeb0f5c-46a8-11ea-be3a-b827eb24328f_1580750225_crop.jpg" style="width: 400px" /></div>
+	</div>
 </body>
 
+<script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript">
+	$('.grid').imagesLoaded( function(){
+		$('.grid').masonry({
+		  // options
+		  itemSelector: '.grid-item',
+		  columnWidth: 400
+		});
+	});
+</script>

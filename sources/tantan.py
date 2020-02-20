@@ -37,6 +37,7 @@ class Tantan(ProfileBase):
     
     stop_condition_check_texts = [
         'There is no one new around you',
+        'month',
     ]
     
     # def is_stop_condition(self):

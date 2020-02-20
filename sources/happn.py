@@ -19,7 +19,7 @@ class Happn(ProfileBase):
             0.15, 
             0.0, 
             0.85, 
-            0.4,
+            0.9,
             )
     }
     initial_tap_coords = (

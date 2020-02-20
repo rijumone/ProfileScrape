@@ -37,8 +37,13 @@ class Woo(ProfileBase):
     }
     remove_these = ['SEE WHAT A FRIEND THINKS', ]
     stop_condition_check_texts = [
+        'Brand\'s Tags',
         'All out of likes',
         'Get more likes in',
+        '#Increase visibility',
+        'who visit your profile.',
+        'your profile will increase your visibility',
+        'by upto 20 times. Get unlimited access to all',
     ]
     tmp_image_path = None
 

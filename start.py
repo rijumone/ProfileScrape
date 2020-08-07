@@ -12,10 +12,6 @@ logger.add(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'log.log'), 
 
 def main():
     
-    
-    # sources = session.query(Source).filter(Source.name=='tinder').all()
-    # sources = session.query(Source).filter(Source.name=='happn').all()
-    # sources = session.query(Source).filter(Source.name=='tantan').all()
     sources = session.query(
         Source
         ).filter(

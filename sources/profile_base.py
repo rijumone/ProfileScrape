@@ -60,7 +60,7 @@ class ProfileBase(metaclass=ABCMeta):
     
     # @abstractmethod
     def is_stop_condition(self):
-        self.tmp_image_path = "media/tmp.png"
+        self.tmp_image_path = "/home/pi/Kitchen/ProfileScrape/media/tmp.png"
         self.device.shell("screencap -p /sdcard/screen.png")
         self.device.pull("/sdcard/screen.png", self.tmp_image_path)
         with Image.open(self.tmp_image_path) as tmp_image:
@@ -82,10 +82,10 @@ class ProfileBase(metaclass=ABCMeta):
             if stop_condition_check_text.lower() in raw_text.lower():
                 return True
         self._uuid = str(self.generate_uuid()) + '_' + str(int(time.time()))
-        self.main_image_path = "media/{}.png".format(self._uuid)
-        self.crop_image_path = "media/{}_crop.jpg".format(self._uuid)
-        self.tmp_image_path = "media/{}_tmp.png".format(self._uuid)
-        self.raw_image_path = "media/{}_raw.png".format(self._uuid)        
+        self.main_image_path = "/home/pi/Kitchen/ProfileScrape/media/{}.png".format(self._uuid)
+        self.crop_image_path = "/home/pi/Kitchen/ProfileScrape/media/{}_crop.jpg".format(self._uuid)
+        self.tmp_image_path = "/home/pi/Kitchen/ProfileScrape/media/{}_tmp.png".format(self._uuid)
+        self.raw_image_path = "/home/pi/Kitchen/ProfileScrape/media/{}_raw.png".format(self._uuid)        
         self.get_to_ready_state()
         return False
     
@@ -171,7 +171,7 @@ class ProfileBase(metaclass=ABCMeta):
 
     def is_ad(self):
         self.device.shell("screencap -p /sdcard/screen.png")
-        # self.tmp_image_path = "media/{}_tmp.png".format(_uuid)
+        # self.tmp_image_path = "/home/pi/Kitchen/ProfileScrape/media/{}_tmp.png".format(_uuid)
         self.device.pull("/sdcard/screen.png", self.tmp_image_path)
         # print(int(self.screen_resolution_height * (self.crops['is_ad'][0])), 
         #         int(self.screen_resolution_height * (self.crops['is_ad'][1])), 

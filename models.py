@@ -29,6 +29,7 @@ class Source(Base):
 
     name = Column(String, primary_key=True)
     call_order = Column(Integer)
+    is_active = Column(Boolean)
     
     def __repr__(self):
         return '''<Source (
